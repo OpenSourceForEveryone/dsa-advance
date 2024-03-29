@@ -1,4 +1,4 @@
-﻿namespace DynamicProgramming.Knapsack
+﻿ namespace DynamicProgramming.Knapsack
 {
     internal class KnapsackProblem
     {
@@ -8,9 +8,9 @@
         /// <param name="weights"></param>
         /// <param name="values"></param>
         /// <param name="w"></param>
-        /// <param name="n"></param>
+        /// <param name="n"></param>                
         /// <returns></returns>
-        public int Knapsack(int[] weights, int[] values, int w, int n)
+        public int Knapsack(int[] weights, int[] values, int w, int n)             
         {
             if (w == 0 || n == 0)
                 return 0;
@@ -35,7 +35,7 @@
        /// <param name="n"></param>
        /// <param name="dp"></param>
        /// <returns></returns>
-       public int Knapsack(int[] weights, int[] values, int w, int n, int[, ] dp)
+       public int Knapsack(int[] weights, int[] values, int w, int n, int[, ] dp)   
        {
             if (w == 0 || n == 0)
                 return 0;
@@ -64,26 +64,26 @@
         /// <param name="n"></param>
         /// <param name="dp"></param>
         /// <returns></returns>
-        public int Knapsapk1(int[] weights, int[] values, int w, int n, int[,] dp)
+        public int KnapsapkDP(int[] wt, int[] val, int W, int n)
         {
-            // Step 1: Base condition -> Initialization
-            for (int i = 0; i < n + 1; i++)
+            int[ , ] dp = new int[n + 1, W + 1];
+
+            for (int i = 0; i <= n; i++)
             {
                 dp[i, 0] = 0;
             }
-
-            for (int i = 0; i < w + 1; i++)
+            for (int j = 0; j <= W; j++)
             {
-                dp[0, i] = 0;
+                dp[0, j] = 0;
             }
-            // Step 2: Convert Recursive to Iterative
-            for (int i = 0; i < n + 1; i++)
+
+            for (int i = 1; i <= n; i++)
             {
-                for (int j = 0; j < w + 1; j++)
+                for (int j = 1; j <= W; j++)
                 {
-                    if (weights[i-1] <= j)
+                    if (wt[i - 1] <= j)
                     {
-                        dp[i, j] = Math.Max(values[i - 1] + dp[j - weights[i - 1], i - 1], dp[i - 1, j]);
+                        dp[i, j] = Math.Max(val[i - 1] + dp[i - 1, j - wt[i - 1]], dp[i - 1, j]);
                     }
                     else
                     {
@@ -91,9 +91,7 @@
                     }
                 }
             }
-
-            return dp[n, w];
+            return dp[n, W];
         }
-
     }
 }

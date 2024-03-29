@@ -1,3 +1,2 @@
 ﻿// See https://aka.ms/new-console-template for more information
-
-using DynamicProgramming.Knapsack;
+Console.WriteLine("Hello, World!");
